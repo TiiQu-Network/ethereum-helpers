@@ -2,12 +2,13 @@ package client
 
 import (
 	"context"
+	"math/big"
+	"strconv"
+
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/ethclient"
 	"github.com/ethereum/go-ethereum/rpc"
-	"github.com/medicalchain/ethereum-client/handlers"
-	"math/big"
-	"strconv"
+	"github.com/Samyoul/go-handle/handlers"
 )
 
 type Client struct {
