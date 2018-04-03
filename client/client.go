@@ -1,0 +1,84 @@
+package client
+
+import (
+	"context"
+	"github.com/ethereum/go-ethereum/common"
+	"github.com/ethereum/go-ethereum/ethclient"
+	"github.com/ethereum/go-ethereum/rpc"
+	"github.com/medicalchain/ethereum-client/handlers"
+	"math/big"
+	"strconv"
+)
+
+type Client struct {
+	errorHandler  *handlers.ErrorHandler
+	EtherClient   *ethclient.Client
+	RpcClient     *rpc.Client
+}
+
+func Dial(rawUrl string) (*Client) {
+
+	handler := new(handlers.ErrorHandler)
+
+	// Make connection to Ethereum client
+	ethClient, err := ethclient.Dial(rawUrl)
+	handler.Handle(err, "Failed to connect to the Ethereum network:")
+
+	// Make connection to the RPC client
+	newRpcClient, err := rpc.Dial(rawUrl)
+	handler.Handle(err, "Failed to connect to the Ethereum network:")
+
+	return &Client{
+		errorHandler:  handler,
+		EtherClient:   ethClient,
+		RpcClient:     newRpcClient,
+	}
+}
+
+// Internal call function
+func (c Client) rpcCall(method string) (string) {
+	var output string
+	err := c.RpcClient.Call(&output, method)
+	c.errorHandler.Handle(err, "RPC call failed - Method: %s", method)
+
+	return output
+}
+
+/**
+ *  RPC Requests
+ */
+
+// Get client version
+func (c Client) ClientVersion() (string) {
+	return c.rpcCall("web3_clientVersion")
+}
+
+// Get net version
+func (c Client) NetVersion() (string) {
+	return c.rpcCall("net_version")
+}
+
+// Get latest block number
+func (c Client) BlockNumber() (*big.Int) {
+	response := c.rpcCall("eth_blockNumber")
+
+	// Convert the hex response data into an int
+	blockNumberInt, err := strconv.ParseInt(response, 0, 64)
+	c.errorHandler.Handle(err, "Failed to parse blockNumber from hex to int:")
+
+	// Convert int into big.Int for use with other method calls
+	return big.NewInt(blockNumberInt)
+}
+
+/**
+ *  Ether Requests
+ */
+
+func (c Client) BalanceAt(hexAddress string) (*big.Int) {
+	blockNumber := c.BlockNumber()
+
+	bal, err := c.EtherClient.BalanceAt(context.TODO(), common.HexToAddress(hexAddress), blockNumber)
+	c.errorHandler.Handle(err, "Failed to get balance:")
+
+	return bal
+}
