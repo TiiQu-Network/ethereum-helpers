@@ -10,9 +10,9 @@ import (
 	"github.com/ethereum/go-ethereum"
 	"github.com/ethereum/go-ethereum/accounts/abi/bind"
 	"github.com/ethereum/go-ethereum/common"
-	"github.com/medicalchain/ethereum-client/contracts/events"
-	"github.com/medicalchain/ethereum-client/handlers"
-	"github.com/medicalchain/ethereum-client/key"
+	"github.com/TiiQu-Network/ethereum-helpers/contracts/events"
+	"github.com/TiiQu-Network/ethereum-helpers/key"
+	"github.com/Samyoul/go-handle/handlers"
 )
 
 var handler = new(handlers.ErrorHandler)
