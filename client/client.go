@@ -8,7 +8,7 @@ import (
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/ethclient"
 	"github.com/ethereum/go-ethereum/rpc"
-	"github.com/Samyoul/go-handle/handlers"
+	"github.com/Samyoul/go-handle"
 )
 
 type Client struct {

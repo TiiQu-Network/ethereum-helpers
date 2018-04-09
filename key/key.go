@@ -4,10 +4,10 @@ import (
 	"crypto/ecdsa"
 	"crypto/elliptic"
 	"encoding/hex"
-  
+
 	"github.com/ethereum/go-ethereum/crypto"
 	"github.com/ethereum/go-ethereum/crypto/secp256k1"
-	"github.com/samyoul/go-handle/handlers"
+	"github.com/Samyoul/go-handle"
 )
 
 type PrivateKey struct {

@@ -12,7 +12,7 @@ import (
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/TiiQu-Network/ethereum-helpers/contracts/events"
 	"github.com/TiiQu-Network/ethereum-helpers/key"
-	"github.com/Samyoul/go-handle/handlers"
+	"github.com/Samyoul/go-handle"
 )
 
 var handler = new(handlers.ErrorHandler)
