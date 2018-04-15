@@ -1,18 +1,15 @@
 package client
 
 import (
-	"context"
 	"fmt"
-	"math/big"
 	"os"
 	"testing"
 
-	"github.com/ethereum/go-ethereum"
 	"github.com/ethereum/go-ethereum/accounts/abi/bind"
-	"github.com/ethereum/go-ethereum/common"
 	"github.com/TiiQu-Network/ethereum-helpers/contracts/events"
 	"github.com/TiiQu-Network/ethereum-helpers/key"
 	"github.com/Samyoul/go-handle"
+	"math/big"
 )
 
 var handler = new(handlers.ErrorHandler)
@@ -33,38 +30,46 @@ func Test(t *testing.T) {
 	fmt.Println(net)
 	fmt.Println(blockNumber)
 
-	// Get balance of account
-	bal := ethClient.BalanceAt("0x0000000000000000000000000000000000000000")
+	account := "0x4841F78f190B7436a0048332d871a5cF7C8A8636"
 
-	// Output balance
+	// Get balance of account
+	bal := ethClient.BalanceAt(account)
 	fmt.Println("Balance is : " + bal.String())
+
+	// Get transaction count
+	txCount := ethClient.TransactionCount(account)
+	fmt.Println("Transaction count is : " + txCount.String())
 
 	privateKey := key.New()
 	bind.NewKeyedTransactor(privateKey.ECDSA())
 
-	query := ethereum.FilterQuery{
-		FromBlock: big.NewInt(2607801),
-		ToBlock:   big.NewInt(2607804),
-		Topics:    [][]common.Hash{{events.TransferTokenSignature}},
-		Addresses: []common.Address{common.HexToAddress("0xa74476443119A942dE498590Fe1f2454d7D4aC0d")},
-	}
+	fmt.Println("Signature: " + events.TransferTokenSignature.String())
 
-	fmt.Println(query)
+	balance, err := ethClient.GetContractBalance("0x2c3c1f05187dba7a5f2dd47dca57281c4d4f183f", account)
+	handler.Handle(err, "Balance Error")
+	fmt.Println("balance is " + balance.String())
 
-	results, err := ethClient.EtherClient.FilterLogs(context.TODO(), query)
-	handler.Handle(err, "Filter Error")
+	logs, err := ethClient.GetContractLogs("0x2c3c1f05187dba7a5f2dd47dca57281c4d4f183f", big.NewInt(5300000), big.NewInt(5400000))
+	handler.Handle(err, "Logs Error")
+	printLogs(logs)
+}
 
-	fmt.Println("Found logs :", len(results))
+
+func printLogs(logs []ContractLog) {
+	fmt.Println("Found logs :", len(logs))
 	fmt.Println("----------------------------------------------------------------")
 
-	for index, element := range results {
+	for index, element := range logs {
 
-		event := new(events.EventTokenTransfer)
-		event.Unmarshal(&element)
 		fmt.Println("Event :", index)
-		fmt.Println("- From  :", event.From.String())
-		fmt.Println("- To    :", event.To.String())
-		fmt.Println("- Value :", event.Value)
+		fmt.Println("- TX Hash :", element.TxHash)
+		fmt.Println("- Block :", element.Block)
+		fmt.Println("- From :", element.From)
+		fmt.Println("- To :", element.To)
+		fmt.Println("- Removed :", element.Removed)
+		fmt.Println("- Value :", element.Value.String())
+
 		fmt.Println("----------------------------------------------------------------")
 	}
+
 }
