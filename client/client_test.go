@@ -10,6 +10,7 @@ import (
 	"github.com/TiiQu-Network/ethereum-helpers/key"
 	"github.com/Samyoul/go-handle"
 	"math/big"
+	"github.com/ethereum/go-ethereum/common"
 )
 
 var handler = new(handlers.ErrorHandler)
@@ -45,6 +46,16 @@ func Test(t *testing.T) {
 
 	fmt.Println("Signature: " + events.TransferTokenSignature.String())
 
+	testTokenContract(ethClient)
+
+	// TODO
+	//testAccountMangerContract(ethClient)
+}
+
+
+func testTokenContract(ethClient *Client) {
+	fmt.Println("Token Contract test")
+	account := "0x4841F78f190B7436a0048332d871a5cF7C8A8636"
 	balance, err := ethClient.GetContractBalance("0x2c3c1f05187dba7a5f2dd47dca57281c4d4f183f", account)
 	handler.Handle(err, "Balance Error")
 	fmt.Println("balance is " + balance.String())
@@ -54,6 +65,13 @@ func Test(t *testing.T) {
 	printLogs(logs)
 }
 
+func testAccountMangerContract(ethClient *Client) {
+	fmt.Println("AccountManager Contract test")
+	account := common.HexToAddress( "0x4841F78f190B7436a0048332d871a5cF7C8A8636")
+	uuid, err := ethClient.GetUserUUID("0x2c3c1f05187dba7a5f2dd47dca57281c4d4f183f", account)
+	handler.Handle(err, "GetUserUUID Error")
+	fmt.Println("uuid is " + uuid)
+}
 
 func printLogs(logs []ContractLog) {
 	fmt.Println("Found logs :", len(logs))
