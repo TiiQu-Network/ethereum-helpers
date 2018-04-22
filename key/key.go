@@ -5,9 +5,10 @@ import (
 	"crypto/elliptic"
 	"encoding/hex"
 
+	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/crypto"
 	"github.com/ethereum/go-ethereum/crypto/secp256k1"
-	"github.com/Samyoul/go-handle"
+	"github.com/medicalchain/ethereum-client/handlers"
 )
 
 type PrivateKey struct {
@@ -15,6 +16,14 @@ type PrivateKey struct {
 	ecdsa         *ecdsa.PrivateKey
 	EcdsaPubBytes []byte
 	errorHandler  *handlers.ErrorHandler
+}
+
+type Signature struct {
+	Raw  []byte
+	Hash [32]byte
+	R    [32]byte
+	S    [32]byte
+	V    uint8
 }
 
 func New() *PrivateKey {
@@ -63,6 +72,10 @@ func (p PrivateKey) Address() string {
 	return hex.EncodeToString(p.AddressBytes())
 }
 
+func (p PrivateKey) AddressEth() common.Address {
+	return common.BytesToAddress(p.AddressBytes())
+}
+
 func (p PrivateKey) AddressBytes() []byte {
 	return crypto.Keccak256(p.EcdsaPubBytes[1:])[12:]
 }
@@ -72,10 +85,28 @@ func (p PrivateKey) AddressSha3() string {
 }
 
 func (p PrivateKey) Sign(message string) string {
-	hash := crypto.Keccak256([]byte(message))
+	// TODO should be refactored or removed, adapt dependant code to use a Signature struct, rename SignToBytes to Sign
+	sig := p.SignToBytes([]byte(message))
+	return hex.EncodeToString(append(sig.R[:], sig.S[:]...))
+}
 
+func (p PrivateKey) SignToBytes(message []byte) Signature {
+	hash := crypto.Keccak256(message)
 	signature, err := crypto.Sign(hash, p.ecdsa)
 	p.errorHandler.Handle(err, "Signature error")
 
-	return hex.EncodeToString(signature[:64])
+	return Signature{
+		signature,
+		p.bytes32(hash),
+		p.bytes32(signature[:32]),
+		p.bytes32(signature[32:64]),
+		uint8(int(signature[64])) + 27, // Yes add 27, weird Ethereum quirk
+	}
+}
+
+func (p PrivateKey) bytes32(slice []byte) (array [32]byte) {
+	for i, b := range slice {
+		array[i] = b
+	}
+	return array
 }
