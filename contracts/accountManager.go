@@ -15,18 +15,18 @@ import (
 )
 
 // AccountManagerABI is the input ABI used to generate the binding from.
-const AccountManagerABI = "[{\"constant\":false,\"inputs\":[{\"name\":\"uuid\",\"type\":\"bytes32\"},{\"name\":\"addresses\",\"type\":\"address[]\"}],\"name\":\"addAddresses\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"registrationKey\",\"outputs\":[{\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"uuid\",\"type\":\"bytes32\"},{\"name\":\"signedPublicKey\",\"type\":\"bytes32\"},{\"name\":\"hashedRecoveryPhrase\",\"type\":\"bytes32\"}],\"name\":\"register\",\"outputs\":[{\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"hashedMessage\",\"type\":\"bytes32\"}],\"name\":\"verify\",\"outputs\":[{\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"oldRPHash\",\"type\":\"bytes32\"},{\"name\":\"oldSignedRPHash\",\"type\":\"bytes32\"},{\"name\":\"newRPHash\",\"type\":\"bytes32\"},{\"name\":\"newSignedRPHash\",\"type\":\"bytes32\"}],\"name\":\"recover\",\"outputs\":[{\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"userPublicKey\",\"type\":\"address\"}],\"name\":\"getUUID\",\"outputs\":[{\"name\":\"\",\"type\":\"bytes32\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"owner\",\"outputs\":[{\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"uuid\",\"type\":\"bytes32\"}],\"name\":\"getAdresses\",\"outputs\":[{\"name\":\"\",\"type\":\"address[]\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"hashedRecoveryPhrase\",\"type\":\"bytes32\"}],\"name\":\"hasHash\",\"outputs\":[{\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"user\",\"type\":\"address\"}],\"name\":\"isRegistered\",\"outputs\":[{\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"userPublicKey\",\"type\":\"address\"}],\"name\":\"getAssociatedAddresses\",\"outputs\":[{\"name\":\"\",\"type\":\"address[]\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"userPublicKey\",\"type\":\"address\"}],\"name\":\"getUUIDString\",\"outputs\":[{\"name\":\"\",\"type\":\"string\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"transferOwnership\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"name\":\"_registrationKey\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"name\":\"uuid\",\"type\":\"bytes32\"},{\"indexed\":false,\"name\":\"sender\",\"type\":\"address\"}],\"name\":\"Registered\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"OwnershipTransferred\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"name\":\"uuid\",\"type\":\"bytes32\"}],\"name\":\"AccountRecovered\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"name\":\"uuid\",\"type\":\"bytes32\"}],\"name\":\"AccountsAdded\",\"type\":\"event\"}]"
+const AccountManagerABI = "[{\"constant\":false,\"inputs\":[{\"name\":\"addresses\",\"type\":\"address[]\"}],\"name\":\"addAddresses\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"uuid\",\"type\":\"bytes32\"}],\"name\":\"getAddresses\",\"outputs\":[{\"name\":\"\",\"type\":\"address[]\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"owner\",\"outputs\":[{\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"userAddress\",\"type\":\"address\"},{\"name\":\"sigR\",\"type\":\"bytes32\"},{\"name\":\"sigS\",\"type\":\"bytes32\"},{\"name\":\"sigV\",\"type\":\"uint8\"}],\"name\":\"getUUID\",\"outputs\":[{\"name\":\"\",\"type\":\"bytes32\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"hashedRecoveryPhrase\",\"type\":\"bytes32\"}],\"name\":\"hasHash\",\"outputs\":[{\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"oldRPHash\",\"type\":\"bytes32\"},{\"name\":\"sigR\",\"type\":\"bytes32\"},{\"name\":\"sigS\",\"type\":\"bytes32\"},{\"name\":\"sigV\",\"type\":\"uint8\"},{\"name\":\"newRPHash\",\"type\":\"bytes32\"}],\"name\":\"recover\",\"outputs\":[{\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"user\",\"type\":\"address\"}],\"name\":\"isRegistered\",\"outputs\":[{\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"userAddress\",\"type\":\"address\"}],\"name\":\"getAssociatedAddresses\",\"outputs\":[{\"name\":\"\",\"type\":\"address[]\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"uuid\",\"type\":\"bytes32\"},{\"name\":\"hashedRecoveryPhrase\",\"type\":\"bytes32\"},{\"name\":\"sigR\",\"type\":\"bytes32\"},{\"name\":\"sigS\",\"type\":\"bytes32\"},{\"name\":\"sigV\",\"type\":\"uint8\"}],\"name\":\"register\",\"outputs\":[{\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"transferOwnership\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"newAuthKeyAddress\",\"type\":\"address\"}],\"name\":\"changeAuthKeyAddress\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"name\":\"newAuthKeyAddress\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"name\":\"uuid\",\"type\":\"bytes32\"},{\"indexed\":false,\"name\":\"sender\",\"type\":\"address\"}],\"name\":\"Registered\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"OwnershipTransferred\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"name\":\"newKeyAddress\",\"type\":\"address\"}],\"name\":\"AuthorisationKeyUpdated\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"name\":\"newAddress\",\"type\":\"address\"}],\"name\":\"AccountRecovered\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"name\":\"uuid\",\"type\":\"bytes32\"}],\"name\":\"AccountsAdded\",\"type\":\"event\"}]"
 
 // AccountManagerBin is the compiled bytecode used for deploying new contracts.
-const AccountManagerBin = `0x6060604052341561000f57600080fd5b6040516020806110bf8339810160405280805160008054600160a060020a03338116600160a060020a0319928316179092556001805492909316911617905550506110608061005f6000396000f3006060604052600436106100c45763ffffffff7c010000000000000000000000000000000000000000000000000000000060003504166336de7c1181146100c95780633b1978281461011f5780634da274fd1461014e57806375e366161461017e5780637f52ebb2146101945780638c01069f146101b35780638da5cb5b146101e45780639a55f103146101f75780639f5baacc14610260578063c3c5a54714610276578063c7c04cc014610295578063d669582c146102b4578063f2fde38b1461034a575b600080fd5b34156100d457600080fd5b61011d6004803590604460248035908101908301358060208181020160405190810160405280939291908181526020018383602002808284375094965061036995505050505050565b005b341561012a57600080fd5b610132610430565b604051600160a060020a03909116815260200160405180910390f35b341561015957600080fd5b61016a60043560243560443561043f565b604051901515815260200160405180910390f35b341561018957600080fd5b61016a600435610532565b341561019f57600080fd5b61016a6004356024356044356064356105cb565b34156101be57600080fd5b6101d2600160a060020a0360043516610709565b60405190815260200160405180910390f35b34156101ef57600080fd5b61013261073b565b341561020257600080fd5b61020d60043561074a565b60405160208082528190810183818151815260200191508051906020019060200280838360005b8381101561024c578082015183820152602001610234565b505050509050019250505060405180910390f35b341561026b57600080fd5b61016a6004356107d8565b341561028157600080fd5b61016a600160a060020a0360043516610802565b34156102a057600080fd5b61020d600160a060020a0360043516610818565b34156102bf57600080fd5b6102d3600160a060020a03600435166108bc565b60405160208082528190810183818151815260200191508051906020019080838360005b8381101561030f5780820151838201526020016102f7565b50505050905090810190601f16801561033c5780820380516001836020036101000a031916815260200191505b509250505060405180910390f35b341561035557600080fd5b61011d600160a060020a0360043516610906565b600061037433610802565b151561037f57600080fd5b5060005b81518110156103f85760008381526002602052604090208054600181016103aa8382610fd8565b916000526020600020900160008484815181106103c357fe5b906020019060200201518254600160a060020a039182166101009390930a928302919092021990911617905550600101610383565b7fc1d0d899ac6587729c022ff99d15f711f7b8df0a288603edcbe1dd2b59951df88360405190815260200160405180910390a1505050565b600154600160a060020a031681565b600061044a33610802565b1561045157fe5b61045a83610532565b151561046257fe5b600160a060020a03331660009081526003602090815260408083208790558683526002909152902080546001810161049a8382610fd8565b506000918252602080832091909101805473ffffffffffffffffffffffffffffffffffffffff191633600160a060020a0381169190911790915584835260049091526040918290208690557f7d917fcbc9a29a9705ff9936ffa599500e4fd902e4486bae317414fe967b307c9186919051918252600160a060020a031660208201526040908101905180910390a15060019392505050565b60008060008061054185610989565b600180549396509194509250600160a060020a0390911690868585856040516000815260200160405260405193845260ff9092166020808501919091526040808501929092526060840192909252608090920191516020810390808403906000865af115156105af57600080fd5b505060206040510351600160a060020a03161495945050505050565b6000806105d733610802565b15156105e257600080fd5b600086905260046020526105f586610532565b15156105fd57fe5b61060684610532565b151561060e57fe5b61061785610532565b151561061f57fe5b61062883610532565b151561063057fe5b50600085815260046020908152604080832054868452818420819055600160a060020a033316845260038352818420819055808452600290925282209091906106799082610fd8565b5060008181526002602052604090208054600181016106988382610fd8565b506000918252602090912001805473ffffffffffffffffffffffffffffffffffffffff191633600160a060020a03161790557fd67568f31e693c2a76b51fa11a1edf173364e7f7c90f3bf34f802b4a49b8344d8160405190815260200160405180910390a150600195945050505050565b600061071433610802565b151561071f57600080fd5b50600160a060020a031660009081526003602052604090205490565b600054600160a060020a031681565b610752611001565b61075b33610802565b151561076657600080fd5b6000828152600260209081526040918290208054909290918281020190519081016040528092919081815260200182805480156107cc57602002820191906000526020600020905b8154600160a060020a031681526001909101906020018083116107ae575b50505050509050919050565b6000805433600160a060020a039081169116146107f457600080fd5b506000526004602052600190565b600160a060020a03166000908152600360205290565b610820611001565b60005433600160a060020a0390811691161461083b57600080fd5b6002600061084884610709565b600019166000191681526020019081526020016000208054806020026020016040519081016040528092919081815260200182805480156107cc57602002820191906000526020600020908154600160a060020a031681526001909101906020018083116107ae5750505050509050919050565b6108c4611001565b60006108cf33610802565b15156108da57600080fd5b50600160a060020a0382166000908152600360205260409020546108fd81610a2a565b91505b50919050565b60005433600160a060020a0390811691161461092157600080fd5b6000805473ffffffffffffffffffffffffffffffffffffffff1916600160a060020a0383161790557f04dba622d284ed0014ee4b9a6a68386be1a4c08a4913ae272de89199cc68616381604051600160a060020a03909116815260200160405180910390a150565b60008060008060008061099a611001565b60005433600160a060020a039081169116146109b557600080fd5b6109d26109cd6109c48a610a2a565b60026084610b72565b610c41565b90506020810151925060408101519150606081015160001a9350601b8460ff1610156109ff57601b840193505b601b8460ff161180610a145750601c8460ff16105b1515610a1c57fe5b509196909550909350915050565b610a32611001565b610a3a611001565b6000806000610a47611001565b6020604051805910610a565750595b818152601f19601f83011681016020016040529050945060009350600092505b6020831015610ae9576008830260020a870291507fff00000000000000000000000000000000000000000000000000000000000000821615610ade5781858581518110610abf57fe5b906020010190600160f860020a031916908160001a9053506001909301925b600190920191610a76565b83604051805910610af75750595b818152601f19601f830116810160200160405290509050600092505b83831015610b6857848381518110610b2757fe5b016020015160f860020a900460f860020a02818481518110610b4557fe5b906020010190600160f860020a031916908160001a905350600190920191610b13565b9695505050505050565b610b7a611001565b610b82611001565b610b8a611001565b859150600084861115610b9c57600080fd5b6000861015610baa57600080fd5b8251851115610bb857600080fd5b858503604051805910610bc85750595b818152601f19601f8301168101602001604052905091508590505b84811015610c3757828181518110610bf757fe5b016020015160f860020a900460f860020a028287830381518110610c1757fe5b906020010190600160f860020a031916908160001a905350600101610be3565b5095945050505050565b610c49611001565b6000610c53611001565b6000610c5d611001565b610c65611001565b600080885196506002870615610c7a57600080fd5b60028704604051805910610c8b5750595b818152601f19601f83011681016020016040529050955060009450600091505b86821015610d4a57610cc1898384600101610b72565b9350610cd4898360010184600201610b72565b9250610cdf83610d57565b610ce885610d57565b601002019050610cf781610fa0565b601f81518110610d0357fe5b016020015160f860020a900460f860020a02868680600101975081518110610d2757fe5b906020010190600160f860020a031916908160001a905350600282019150610cab565b5093979650505050505050565b6000610d61611001565b50817f300000000000000000000000000000000000000000000000000000000000000081600081518110610d9157fe5b016020015160f860020a900460f860020a02600160f860020a03191610158015610e0357507f390000000000000000000000000000000000000000000000000000000000000081600081518110610de457fe5b016020015160f860020a900460f860020a02600160f860020a03191611155b15610e3857603081600081518110610e1757fe5b016020015160f860020a900460f860020a0260f860020a9004039150610900565b7f410000000000000000000000000000000000000000000000000000000000000081600081518110610e6657fe5b016020015160f860020a900460f860020a02600160f860020a03191610158015610ed857507f460000000000000000000000000000000000000000000000000000000000000081600081518110610eb957fe5b016020015160f860020a900460f860020a02600160f860020a03191611155b15610eec57603781600081518110610e1757fe5b7f610000000000000000000000000000000000000000000000000000000000000081600081518110610f1a57fe5b016020015160f860020a900460f860020a02600160f860020a03191610158015610f8c57507f660000000000000000000000000000000000000000000000000000000000000081600081518110610f6d57fe5b016020015160f860020a900460f860020a02600160f860020a03191611155b156100c457605781600081518110610e1757fe5b610fa8611001565b6020604051805910610fb75750595b818152601f19601f8301168101602001604052905060208101929092525090565b815481835581811511610ffc57600083815260209020610ffc918101908301611013565b505050565b60206040519081016040526000815290565b61103191905b8082111561102d5760008155600101611019565b5090565b905600a165627a7a72305820f6cebf3affb5dbfc19d29a0eeb2ae5a04b79c916282eebe0578c4fc0f091a2990029`
+const AccountManagerBin = `0x608060405234801561001057600080fd5b50604051602080610993833981016040525160008054600160a060020a03338116600160a060020a031992831617909255600180549290931691161790556109368061005d6000396000f3006080604052600436106100ae5763ffffffff7c01000000000000000000000000000000000000000000000000000000006000350416633628731c81146100b35780633fdada7a1461010a5780638da5cb5b1461017257806392da867f146101a35780639f5baacc146101e2578063a8a043991461020e578063c3c5a54714610235578063c7c04cc014610256578063eea9542914610277578063f2fde38b1461029e578063ff51886f146102bf575b600080fd5b3480156100bf57600080fd5b5060408051602060048035808201358381028086018501909652808552610108953695939460249493850192918291850190849080828437509497506102e09650505050505050565b005b34801561011657600080fd5b506101226004356103c3565b60408051602080825283518183015283519192839290830191858101910280838360005b8381101561015e578181015183820152602001610146565b505050509050019250505060405180910390f35b34801561017e57600080fd5b50610187610443565b60408051600160a060020a039092168252519081900360200190f35b3480156101af57600080fd5b506101d0600160a060020a036004351660243560443560ff60643516610452565b60408051918252519081900360200190f35b3480156101ee57600080fd5b506101fa6004356104cb565b604080519115158252519081900360200190f35b34801561021a57600080fd5b506101fa60043560243560443560ff606435166084356104f5565b34801561024157600080fd5b506101fa600160a060020a03600435166105c4565b34801561026257600080fd5b50610122600160a060020a03600435166105da565b34801561028357600080fd5b506101fa60043560243560443560643560ff60843516610674565b3480156102aa57600080fd5b50610108600160a060020a036004351661078b565b3480156102cb57600080fd5b50610108600160a060020a0360043516610807565b6000806102ec336105c4565b15156102f757600080fd5b5050600160a060020a033316600090815260036020526040812054905b825181101561038b576000828152600260205260409020835184908390811061033957fe5b602090810291909101810151825460018082018555600094855292909320909201805473ffffffffffffffffffffffffffffffffffffffff1916600160a060020a039093169290921790915501610314565b6040805183815290517fc1d0d899ac6587729c022ff99d15f711f7b8df0a288603edcbe1dd2b59951df89181900360200190a1505050565b60606103ce336105c4565b15156103d957600080fd5b6000828152600260209081526040918290208054835181840281018401909452808452909183018282801561043757602002820191906000526020600020905b8154600160a060020a03168152600190910190602001808311610419575b50505050509050919050565b600054600160a060020a031681565b6000805433600160a060020a0390811691161461046e57600080fd5b604080516c01000000000000000000000000600160a060020a03881602815290519081900360140190206104a490858585610883565b15156104ac57fe5b50505050600160a060020a031660009081526003602052604090205490565b6000805433600160a060020a039081169116146104e757600080fd5b506000526004602052600190565b600085815260046020528061050c87878787610883565b151561051457fe5b5060008681526004602081815260408084208054878652828620819055600160a060020a0333168087526003855283872082905581875260028552838720805460018101825590885285882001805473ffffffffffffffffffffffffffffffffffffffff1916821790558c87529484529490558051928352517f444b9fc80713a03bfc01b03089babd94aa51edececce36355031fd7d1ed50b4a9281900390910190a15060019695505050505050565b600160a060020a03166000908152600360205290565b60005460609033600160a060020a039081169116146105f857600080fd5b600160a060020a038216600090815260036020908152604080832054835260028252918290208054835181840281018401909452808452909183018282801561043757602002820191906000526020600020908154600160a060020a031681526001909101906020018083116104195750505050509050919050565b6000805433600160a060020a039081169116141561069157600080fd5b61069a336105c4565b156106a457600080fd5b604080516c01000000000000000000000000600160a060020a03331602815290519081900360140190206106da90858585610883565b15156106e557600080fd5b600160a060020a03331660008181526003602090815260408083208a905589835260028252808320805460018101825590845282842001805473ffffffffffffffffffffffffffffffffffffffff191685179055888352600482529182902089905581518981529081019290925280517f7d917fcbc9a29a9705ff9936ffa599500e4fd902e4486bae317414fe967b307c9281900390910190a150600195945050505050565b60005433600160a060020a039081169116146107a657600080fd5b60008054600160a060020a03831673ffffffffffffffffffffffffffffffffffffffff19909116811790915560408051918252517f04dba622d284ed0014ee4b9a6a68386be1a4c08a4913ae272de89199cc6861639181900360200190a150565b60005433600160a060020a0390811691161461082257600080fd5b60018054600160a060020a03831673ffffffffffffffffffffffffffffffffffffffff19909116811790915560408051918252517f397e9e5bff25b6d6a7ba18f106ec27385780db7fc612fc66924903e8ef2144f49181900360200190a150565b6001805460408051600080825260208083018085528a905260ff871683850152606083018990526080830188905292519094600160a060020a03909416939260a0808401939192601f198101928190039091019087865af11580156108ec573d6000803e3d6000fd5b50505060206040510351600160a060020a03161490509493505050505600a165627a7a72305820f3db3974bf03f8f319c6e73228d55a4a89616c9d568ac1d1185008b6a6ef2f9f0029`
 
 // DeployAccountManager deploys a new Ethereum contract, binding an instance of AccountManager to it.
-func DeployAccountManager(auth *bind.TransactOpts, backend bind.ContractBackend, _registrationKey common.Address) (common.Address, *types.Transaction, *AccountManager, error) {
+func DeployAccountManager(auth *bind.TransactOpts, backend bind.ContractBackend, newAuthKeyAddress common.Address) (common.Address, *types.Transaction, *AccountManager, error) {
 	parsed, err := abi.JSON(strings.NewReader(AccountManagerABI))
 	if err != nil {
 		return common.Address{}, nil, nil, err
 	}
-	address, tx, contract, err := bind.DeployContract(auth, parsed, common.FromHex(AccountManagerBin), backend, _registrationKey)
+	address, tx, contract, err := bind.DeployContract(auth, parsed, common.FromHex(AccountManagerBin), backend, newAuthKeyAddress)
 	if err != nil {
 		return common.Address{}, nil, nil, err
 	}
@@ -175,108 +175,82 @@ func (_AccountManager *AccountManagerTransactorRaw) Transact(opts *bind.Transact
 	return _AccountManager.Contract.contract.Transact(opts, method, params...)
 }
 
-// GetAdresses is a free data retrieval call binding the contract method 0x9a55f103.
+// GetAddresses is a free data retrieval call binding the contract method 0x3fdada7a.
 //
-// Solidity: function getAdresses(uuid bytes32) constant returns(address[])
-func (_AccountManager *AccountManagerCaller) GetAdresses(opts *bind.CallOpts, uuid [32]byte) ([]common.Address, error) {
+// Solidity: function getAddresses(uuid bytes32) constant returns(address[])
+func (_AccountManager *AccountManagerCaller) GetAddresses(opts *bind.CallOpts, uuid [32]byte) ([]common.Address, error) {
 	var (
 		ret0 = new([]common.Address)
 	)
 	out := ret0
-	err := _AccountManager.contract.Call(opts, out, "getAdresses", uuid)
+	err := _AccountManager.contract.Call(opts, out, "getAddresses", uuid)
 	return *ret0, err
 }
 
-// GetAdresses is a free data retrieval call binding the contract method 0x9a55f103.
+// GetAddresses is a free data retrieval call binding the contract method 0x3fdada7a.
 //
-// Solidity: function getAdresses(uuid bytes32) constant returns(address[])
-func (_AccountManager *AccountManagerSession) GetAdresses(uuid [32]byte) ([]common.Address, error) {
-	return _AccountManager.Contract.GetAdresses(&_AccountManager.CallOpts, uuid)
+// Solidity: function getAddresses(uuid bytes32) constant returns(address[])
+func (_AccountManager *AccountManagerSession) GetAddresses(uuid [32]byte) ([]common.Address, error) {
+	return _AccountManager.Contract.GetAddresses(&_AccountManager.CallOpts, uuid)
 }
 
-// GetAdresses is a free data retrieval call binding the contract method 0x9a55f103.
+// GetAddresses is a free data retrieval call binding the contract method 0x3fdada7a.
 //
-// Solidity: function getAdresses(uuid bytes32) constant returns(address[])
-func (_AccountManager *AccountManagerCallerSession) GetAdresses(uuid [32]byte) ([]common.Address, error) {
-	return _AccountManager.Contract.GetAdresses(&_AccountManager.CallOpts, uuid)
+// Solidity: function getAddresses(uuid bytes32) constant returns(address[])
+func (_AccountManager *AccountManagerCallerSession) GetAddresses(uuid [32]byte) ([]common.Address, error) {
+	return _AccountManager.Contract.GetAddresses(&_AccountManager.CallOpts, uuid)
 }
 
 // GetAssociatedAddresses is a free data retrieval call binding the contract method 0xc7c04cc0.
 //
-// Solidity: function getAssociatedAddresses(userPublicKey address) constant returns(address[])
-func (_AccountManager *AccountManagerCaller) GetAssociatedAddresses(opts *bind.CallOpts, userPublicKey common.Address) ([]common.Address, error) {
+// Solidity: function getAssociatedAddresses(userAddress address) constant returns(address[])
+func (_AccountManager *AccountManagerCaller) GetAssociatedAddresses(opts *bind.CallOpts, userAddress common.Address) ([]common.Address, error) {
 	var (
 		ret0 = new([]common.Address)
 	)
 	out := ret0
-	err := _AccountManager.contract.Call(opts, out, "getAssociatedAddresses", userPublicKey)
+	err := _AccountManager.contract.Call(opts, out, "getAssociatedAddresses", userAddress)
 	return *ret0, err
 }
 
 // GetAssociatedAddresses is a free data retrieval call binding the contract method 0xc7c04cc0.
 //
-// Solidity: function getAssociatedAddresses(userPublicKey address) constant returns(address[])
-func (_AccountManager *AccountManagerSession) GetAssociatedAddresses(userPublicKey common.Address) ([]common.Address, error) {
-	return _AccountManager.Contract.GetAssociatedAddresses(&_AccountManager.CallOpts, userPublicKey)
+// Solidity: function getAssociatedAddresses(userAddress address) constant returns(address[])
+func (_AccountManager *AccountManagerSession) GetAssociatedAddresses(userAddress common.Address) ([]common.Address, error) {
+	return _AccountManager.Contract.GetAssociatedAddresses(&_AccountManager.CallOpts, userAddress)
 }
 
 // GetAssociatedAddresses is a free data retrieval call binding the contract method 0xc7c04cc0.
 //
-// Solidity: function getAssociatedAddresses(userPublicKey address) constant returns(address[])
-func (_AccountManager *AccountManagerCallerSession) GetAssociatedAddresses(userPublicKey common.Address) ([]common.Address, error) {
-	return _AccountManager.Contract.GetAssociatedAddresses(&_AccountManager.CallOpts, userPublicKey)
+// Solidity: function getAssociatedAddresses(userAddress address) constant returns(address[])
+func (_AccountManager *AccountManagerCallerSession) GetAssociatedAddresses(userAddress common.Address) ([]common.Address, error) {
+	return _AccountManager.Contract.GetAssociatedAddresses(&_AccountManager.CallOpts, userAddress)
 }
 
-// GetUUID is a free data retrieval call binding the contract method 0x8c01069f.
+// GetUUID is a free data retrieval call binding the contract method 0x92da867f.
 //
-// Solidity: function getUUID(userPublicKey address) constant returns(bytes32)
-func (_AccountManager *AccountManagerCaller) GetUUID(opts *bind.CallOpts, userPublicKey common.Address) ([32]byte, error) {
+// Solidity: function getUUID(userAddress address, sigR bytes32, sigS bytes32, sigV uint8) constant returns(bytes32)
+func (_AccountManager *AccountManagerCaller) GetUUID(opts *bind.CallOpts, userAddress common.Address, sigR [32]byte, sigS [32]byte, sigV uint8) ([32]byte, error) {
 	var (
 		ret0 = new([32]byte)
 	)
 	out := ret0
-	err := _AccountManager.contract.Call(opts, out, "getUUID", userPublicKey)
+	err := _AccountManager.contract.Call(opts, out, "getUUID", userAddress, sigR, sigS, sigV)
 	return *ret0, err
 }
 
-// GetUUID is a free data retrieval call binding the contract method 0x8c01069f.
+// GetUUID is a free data retrieval call binding the contract method 0x92da867f.
 //
-// Solidity: function getUUID(userPublicKey address) constant returns(bytes32)
-func (_AccountManager *AccountManagerSession) GetUUID(userPublicKey common.Address) ([32]byte, error) {
-	return _AccountManager.Contract.GetUUID(&_AccountManager.CallOpts, userPublicKey)
+// Solidity: function getUUID(userAddress address, sigR bytes32, sigS bytes32, sigV uint8) constant returns(bytes32)
+func (_AccountManager *AccountManagerSession) GetUUID(userAddress common.Address, sigR [32]byte, sigS [32]byte, sigV uint8) ([32]byte, error) {
+	return _AccountManager.Contract.GetUUID(&_AccountManager.CallOpts, userAddress, sigR, sigS, sigV)
 }
 
-// GetUUID is a free data retrieval call binding the contract method 0x8c01069f.
+// GetUUID is a free data retrieval call binding the contract method 0x92da867f.
 //
-// Solidity: function getUUID(userPublicKey address) constant returns(bytes32)
-func (_AccountManager *AccountManagerCallerSession) GetUUID(userPublicKey common.Address) ([32]byte, error) {
-	return _AccountManager.Contract.GetUUID(&_AccountManager.CallOpts, userPublicKey)
-}
-
-// GetUUIDString is a free data retrieval call binding the contract method 0xd669582c.
-//
-// Solidity: function getUUIDString(userPublicKey address) constant returns(string)
-func (_AccountManager *AccountManagerCaller) GetUUIDString(opts *bind.CallOpts, userPublicKey common.Address) (string, error) {
-	var (
-		ret0 = new(string)
-	)
-	out := ret0
-	err := _AccountManager.contract.Call(opts, out, "getUUIDString", userPublicKey)
-	return *ret0, err
-}
-
-// GetUUIDString is a free data retrieval call binding the contract method 0xd669582c.
-//
-// Solidity: function getUUIDString(userPublicKey address) constant returns(string)
-func (_AccountManager *AccountManagerSession) GetUUIDString(userPublicKey common.Address) (string, error) {
-	return _AccountManager.Contract.GetUUIDString(&_AccountManager.CallOpts, userPublicKey)
-}
-
-// GetUUIDString is a free data retrieval call binding the contract method 0xd669582c.
-//
-// Solidity: function getUUIDString(userPublicKey address) constant returns(string)
-func (_AccountManager *AccountManagerCallerSession) GetUUIDString(userPublicKey common.Address) (string, error) {
-	return _AccountManager.Contract.GetUUIDString(&_AccountManager.CallOpts, userPublicKey)
+// Solidity: function getUUID(userAddress address, sigR bytes32, sigS bytes32, sigV uint8) constant returns(bytes32)
+func (_AccountManager *AccountManagerCallerSession) GetUUID(userAddress common.Address, sigR [32]byte, sigS [32]byte, sigV uint8) ([32]byte, error) {
+	return _AccountManager.Contract.GetUUID(&_AccountManager.CallOpts, userAddress, sigR, sigS, sigV)
 }
 
 // HasHash is a free data retrieval call binding the contract method 0x9f5baacc.
@@ -357,119 +331,88 @@ func (_AccountManager *AccountManagerCallerSession) Owner() (common.Address, err
 	return _AccountManager.Contract.Owner(&_AccountManager.CallOpts)
 }
 
-// RegistrationKey is a free data retrieval call binding the contract method 0x3b197828.
+// AddAddresses is a paid mutator transaction binding the contract method 0x3628731c.
 //
-// Solidity: function registrationKey() constant returns(address)
-func (_AccountManager *AccountManagerCaller) RegistrationKey(opts *bind.CallOpts) (common.Address, error) {
-	var (
-		ret0 = new(common.Address)
-	)
-	out := ret0
-	err := _AccountManager.contract.Call(opts, out, "registrationKey")
-	return *ret0, err
+// Solidity: function addAddresses(addresses address[]) returns()
+func (_AccountManager *AccountManagerTransactor) AddAddresses(opts *bind.TransactOpts, addresses []common.Address) (*types.Transaction, error) {
+	return _AccountManager.contract.Transact(opts, "addAddresses", addresses)
 }
 
-// RegistrationKey is a free data retrieval call binding the contract method 0x3b197828.
+// AddAddresses is a paid mutator transaction binding the contract method 0x3628731c.
 //
-// Solidity: function registrationKey() constant returns(address)
-func (_AccountManager *AccountManagerSession) RegistrationKey() (common.Address, error) {
-	return _AccountManager.Contract.RegistrationKey(&_AccountManager.CallOpts)
+// Solidity: function addAddresses(addresses address[]) returns()
+func (_AccountManager *AccountManagerSession) AddAddresses(addresses []common.Address) (*types.Transaction, error) {
+	return _AccountManager.Contract.AddAddresses(&_AccountManager.TransactOpts, addresses)
 }
 
-// RegistrationKey is a free data retrieval call binding the contract method 0x3b197828.
+// AddAddresses is a paid mutator transaction binding the contract method 0x3628731c.
 //
-// Solidity: function registrationKey() constant returns(address)
-func (_AccountManager *AccountManagerCallerSession) RegistrationKey() (common.Address, error) {
-	return _AccountManager.Contract.RegistrationKey(&_AccountManager.CallOpts)
+// Solidity: function addAddresses(addresses address[]) returns()
+func (_AccountManager *AccountManagerTransactorSession) AddAddresses(addresses []common.Address) (*types.Transaction, error) {
+	return _AccountManager.Contract.AddAddresses(&_AccountManager.TransactOpts, addresses)
 }
 
-// Verify is a free data retrieval call binding the contract method 0x75e36616.
+// ChangeAuthKeyAddress is a paid mutator transaction binding the contract method 0xff51886f.
 //
-// Solidity: function verify(hashedMessage bytes32) constant returns(bool)
-func (_AccountManager *AccountManagerCaller) Verify(opts *bind.CallOpts, hashedMessage [32]byte) (bool, error) {
-	var (
-		ret0 = new(bool)
-	)
-	out := ret0
-	err := _AccountManager.contract.Call(opts, out, "verify", hashedMessage)
-	return *ret0, err
+// Solidity: function changeAuthKeyAddress(newAuthKeyAddress address) returns()
+func (_AccountManager *AccountManagerTransactor) ChangeAuthKeyAddress(opts *bind.TransactOpts, newAuthKeyAddress common.Address) (*types.Transaction, error) {
+	return _AccountManager.contract.Transact(opts, "changeAuthKeyAddress", newAuthKeyAddress)
 }
 
-// Verify is a free data retrieval call binding the contract method 0x75e36616.
+// ChangeAuthKeyAddress is a paid mutator transaction binding the contract method 0xff51886f.
 //
-// Solidity: function verify(hashedMessage bytes32) constant returns(bool)
-func (_AccountManager *AccountManagerSession) Verify(hashedMessage [32]byte) (bool, error) {
-	return _AccountManager.Contract.Verify(&_AccountManager.CallOpts, hashedMessage)
+// Solidity: function changeAuthKeyAddress(newAuthKeyAddress address) returns()
+func (_AccountManager *AccountManagerSession) ChangeAuthKeyAddress(newAuthKeyAddress common.Address) (*types.Transaction, error) {
+	return _AccountManager.Contract.ChangeAuthKeyAddress(&_AccountManager.TransactOpts, newAuthKeyAddress)
 }
 
-// Verify is a free data retrieval call binding the contract method 0x75e36616.
+// ChangeAuthKeyAddress is a paid mutator transaction binding the contract method 0xff51886f.
 //
-// Solidity: function verify(hashedMessage bytes32) constant returns(bool)
-func (_AccountManager *AccountManagerCallerSession) Verify(hashedMessage [32]byte) (bool, error) {
-	return _AccountManager.Contract.Verify(&_AccountManager.CallOpts, hashedMessage)
+// Solidity: function changeAuthKeyAddress(newAuthKeyAddress address) returns()
+func (_AccountManager *AccountManagerTransactorSession) ChangeAuthKeyAddress(newAuthKeyAddress common.Address) (*types.Transaction, error) {
+	return _AccountManager.Contract.ChangeAuthKeyAddress(&_AccountManager.TransactOpts, newAuthKeyAddress)
 }
 
-// AddAddresses is a paid mutator transaction binding the contract method 0x36de7c11.
+// Recover is a paid mutator transaction binding the contract method 0xa8a04399.
 //
-// Solidity: function addAddresses(uuid bytes32, addresses address[]) returns()
-func (_AccountManager *AccountManagerTransactor) AddAddresses(opts *bind.TransactOpts, uuid [32]byte, addresses []common.Address) (*types.Transaction, error) {
-	return _AccountManager.contract.Transact(opts, "addAddresses", uuid, addresses)
+// Solidity: function recover(oldRPHash bytes32, sigR bytes32, sigS bytes32, sigV uint8, newRPHash bytes32) returns(bool)
+func (_AccountManager *AccountManagerTransactor) Recover(opts *bind.TransactOpts, oldRPHash [32]byte, sigR [32]byte, sigS [32]byte, sigV uint8, newRPHash [32]byte) (*types.Transaction, error) {
+	return _AccountManager.contract.Transact(opts, "recover", oldRPHash, sigR, sigS, sigV, newRPHash)
 }
 
-// AddAddresses is a paid mutator transaction binding the contract method 0x36de7c11.
+// Recover is a paid mutator transaction binding the contract method 0xa8a04399.
 //
-// Solidity: function addAddresses(uuid bytes32, addresses address[]) returns()
-func (_AccountManager *AccountManagerSession) AddAddresses(uuid [32]byte, addresses []common.Address) (*types.Transaction, error) {
-	return _AccountManager.Contract.AddAddresses(&_AccountManager.TransactOpts, uuid, addresses)
+// Solidity: function recover(oldRPHash bytes32, sigR bytes32, sigS bytes32, sigV uint8, newRPHash bytes32) returns(bool)
+func (_AccountManager *AccountManagerSession) Recover(oldRPHash [32]byte, sigR [32]byte, sigS [32]byte, sigV uint8, newRPHash [32]byte) (*types.Transaction, error) {
+	return _AccountManager.Contract.Recover(&_AccountManager.TransactOpts, oldRPHash, sigR, sigS, sigV, newRPHash)
 }
 
-// AddAddresses is a paid mutator transaction binding the contract method 0x36de7c11.
+// Recover is a paid mutator transaction binding the contract method 0xa8a04399.
 //
-// Solidity: function addAddresses(uuid bytes32, addresses address[]) returns()
-func (_AccountManager *AccountManagerTransactorSession) AddAddresses(uuid [32]byte, addresses []common.Address) (*types.Transaction, error) {
-	return _AccountManager.Contract.AddAddresses(&_AccountManager.TransactOpts, uuid, addresses)
+// Solidity: function recover(oldRPHash bytes32, sigR bytes32, sigS bytes32, sigV uint8, newRPHash bytes32) returns(bool)
+func (_AccountManager *AccountManagerTransactorSession) Recover(oldRPHash [32]byte, sigR [32]byte, sigS [32]byte, sigV uint8, newRPHash [32]byte) (*types.Transaction, error) {
+	return _AccountManager.Contract.Recover(&_AccountManager.TransactOpts, oldRPHash, sigR, sigS, sigV, newRPHash)
 }
 
-// Recover is a paid mutator transaction binding the contract method 0x7f52ebb2.
+// Register is a paid mutator transaction binding the contract method 0xeea95429.
 //
-// Solidity: function recover(oldRPHash bytes32, oldSignedRPHash bytes32, newRPHash bytes32, newSignedRPHash bytes32) returns(bool)
-func (_AccountManager *AccountManagerTransactor) Recover(opts *bind.TransactOpts, oldRPHash [32]byte, oldSignedRPHash [32]byte, newRPHash [32]byte, newSignedRPHash [32]byte) (*types.Transaction, error) {
-	return _AccountManager.contract.Transact(opts, "recover", oldRPHash, oldSignedRPHash, newRPHash, newSignedRPHash)
+// Solidity: function register(uuid bytes32, hashedRecoveryPhrase bytes32, sigR bytes32, sigS bytes32, sigV uint8) returns(bool)
+func (_AccountManager *AccountManagerTransactor) Register(opts *bind.TransactOpts, uuid [32]byte, hashedRecoveryPhrase [32]byte, sigR [32]byte, sigS [32]byte, sigV uint8) (*types.Transaction, error) {
+	return _AccountManager.contract.Transact(opts, "register", uuid, hashedRecoveryPhrase, sigR, sigS, sigV)
 }
 
-// Recover is a paid mutator transaction binding the contract method 0x7f52ebb2.
+// Register is a paid mutator transaction binding the contract method 0xeea95429.
 //
-// Solidity: function recover(oldRPHash bytes32, oldSignedRPHash bytes32, newRPHash bytes32, newSignedRPHash bytes32) returns(bool)
-func (_AccountManager *AccountManagerSession) Recover(oldRPHash [32]byte, oldSignedRPHash [32]byte, newRPHash [32]byte, newSignedRPHash [32]byte) (*types.Transaction, error) {
-	return _AccountManager.Contract.Recover(&_AccountManager.TransactOpts, oldRPHash, oldSignedRPHash, newRPHash, newSignedRPHash)
+// Solidity: function register(uuid bytes32, hashedRecoveryPhrase bytes32, sigR bytes32, sigS bytes32, sigV uint8) returns(bool)
+func (_AccountManager *AccountManagerSession) Register(uuid [32]byte, hashedRecoveryPhrase [32]byte, sigR [32]byte, sigS [32]byte, sigV uint8) (*types.Transaction, error) {
+	return _AccountManager.Contract.Register(&_AccountManager.TransactOpts, uuid, hashedRecoveryPhrase, sigR, sigS, sigV)
 }
 
-// Recover is a paid mutator transaction binding the contract method 0x7f52ebb2.
+// Register is a paid mutator transaction binding the contract method 0xeea95429.
 //
-// Solidity: function recover(oldRPHash bytes32, oldSignedRPHash bytes32, newRPHash bytes32, newSignedRPHash bytes32) returns(bool)
-func (_AccountManager *AccountManagerTransactorSession) Recover(oldRPHash [32]byte, oldSignedRPHash [32]byte, newRPHash [32]byte, newSignedRPHash [32]byte) (*types.Transaction, error) {
-	return _AccountManager.Contract.Recover(&_AccountManager.TransactOpts, oldRPHash, oldSignedRPHash, newRPHash, newSignedRPHash)
-}
-
-// Register is a paid mutator transaction binding the contract method 0x4da274fd.
-//
-// Solidity: function register(uuid bytes32, signedPublicKey bytes32, hashedRecoveryPhrase bytes32) returns(bool)
-func (_AccountManager *AccountManagerTransactor) Register(opts *bind.TransactOpts, uuid [32]byte, signedPublicKey [32]byte, hashedRecoveryPhrase [32]byte) (*types.Transaction, error) {
-	return _AccountManager.contract.Transact(opts, "register", uuid, signedPublicKey, hashedRecoveryPhrase)
-}
-
-// Register is a paid mutator transaction binding the contract method 0x4da274fd.
-//
-// Solidity: function register(uuid bytes32, signedPublicKey bytes32, hashedRecoveryPhrase bytes32) returns(bool)
-func (_AccountManager *AccountManagerSession) Register(uuid [32]byte, signedPublicKey [32]byte, hashedRecoveryPhrase [32]byte) (*types.Transaction, error) {
-	return _AccountManager.Contract.Register(&_AccountManager.TransactOpts, uuid, signedPublicKey, hashedRecoveryPhrase)
-}
-
-// Register is a paid mutator transaction binding the contract method 0x4da274fd.
-//
-// Solidity: function register(uuid bytes32, signedPublicKey bytes32, hashedRecoveryPhrase bytes32) returns(bool)
-func (_AccountManager *AccountManagerTransactorSession) Register(uuid [32]byte, signedPublicKey [32]byte, hashedRecoveryPhrase [32]byte) (*types.Transaction, error) {
-	return _AccountManager.Contract.Register(&_AccountManager.TransactOpts, uuid, signedPublicKey, hashedRecoveryPhrase)
+// Solidity: function register(uuid bytes32, hashedRecoveryPhrase bytes32, sigR bytes32, sigS bytes32, sigV uint8) returns(bool)
+func (_AccountManager *AccountManagerTransactorSession) Register(uuid [32]byte, hashedRecoveryPhrase [32]byte, sigR [32]byte, sigS [32]byte, sigV uint8) (*types.Transaction, error) {
+	return _AccountManager.Contract.Register(&_AccountManager.TransactOpts, uuid, hashedRecoveryPhrase, sigR, sigS, sigV)
 }
 
 // TransferOwnership is a paid mutator transaction binding the contract method 0xf2fde38b.
@@ -562,13 +505,13 @@ func (it *AccountManagerAccountRecoveredIterator) Close() error {
 
 // AccountManagerAccountRecovered represents a AccountRecovered event raised by the AccountManager contract.
 type AccountManagerAccountRecovered struct {
-	Uuid [32]byte
-	Raw  types.Log // Blockchain specific contextual infos
+	NewAddress common.Address
+	Raw        types.Log // Blockchain specific contextual infos
 }
 
-// FilterAccountRecovered is a free log retrieval operation binding the contract event 0xd67568f31e693c2a76b51fa11a1edf173364e7f7c90f3bf34f802b4a49b8344d.
+// FilterAccountRecovered is a free log retrieval operation binding the contract event 0x444b9fc80713a03bfc01b03089babd94aa51edececce36355031fd7d1ed50b4a.
 //
-// Solidity: event AccountRecovered(uuid bytes32)
+// Solidity: event AccountRecovered(newAddress address)
 func (_AccountManager *AccountManagerFilterer) FilterAccountRecovered(opts *bind.FilterOpts) (*AccountManagerAccountRecoveredIterator, error) {
 
 	logs, sub, err := _AccountManager.contract.FilterLogs(opts, "AccountRecovered")
@@ -578,9 +521,9 @@ func (_AccountManager *AccountManagerFilterer) FilterAccountRecovered(opts *bind
 	return &AccountManagerAccountRecoveredIterator{contract: _AccountManager.contract, event: "AccountRecovered", logs: logs, sub: sub}, nil
 }
 
-// WatchAccountRecovered is a free log subscription operation binding the contract event 0xd67568f31e693c2a76b51fa11a1edf173364e7f7c90f3bf34f802b4a49b8344d.
+// WatchAccountRecovered is a free log subscription operation binding the contract event 0x444b9fc80713a03bfc01b03089babd94aa51edececce36355031fd7d1ed50b4a.
 //
-// Solidity: event AccountRecovered(uuid bytes32)
+// Solidity: event AccountRecovered(newAddress address)
 func (_AccountManager *AccountManagerFilterer) WatchAccountRecovered(opts *bind.WatchOpts, sink chan<- *AccountManagerAccountRecovered) (event.Subscription, error) {
 
 	logs, sub, err := _AccountManager.contract.WatchLogs(opts, "AccountRecovered")
@@ -717,6 +660,128 @@ func (_AccountManager *AccountManagerFilterer) WatchAccountsAdded(opts *bind.Wat
 				// New log arrived, parse the event and forward to the user
 				event := new(AccountManagerAccountsAdded)
 				if err := _AccountManager.contract.UnpackLog(event, "AccountsAdded", log); err != nil {
+					return err
+				}
+				event.Raw = log
+
+				select {
+				case sink <- event:
+				case err := <-sub.Err():
+					return err
+				case <-quit:
+					return nil
+				}
+			case err := <-sub.Err():
+				return err
+			case <-quit:
+				return nil
+			}
+		}
+	}), nil
+}
+
+// AccountManagerAuthorisationKeyUpdatedIterator is returned from FilterAuthorisationKeyUpdated and is used to iterate over the raw logs and unpacked data for AuthorisationKeyUpdated events raised by the AccountManager contract.
+type AccountManagerAuthorisationKeyUpdatedIterator struct {
+	Event *AccountManagerAuthorisationKeyUpdated // Event containing the contract specifics and raw log
+
+	contract *bind.BoundContract // Generic contract to use for unpacking event data
+	event    string              // Event name to use for unpacking event data
+
+	logs chan types.Log        // Log channel receiving the found contract events
+	sub  ethereum.Subscription // Subscription for errors, completion and termination
+	done bool                  // Whether the subscription completed delivering logs
+	fail error                 // Occurred error to stop iteration
+}
+
+// Next advances the iterator to the subsequent event, returning whether there
+// are any more events found. In case of a retrieval or parsing error, false is
+// returned and Error() can be queried for the exact failure.
+func (it *AccountManagerAuthorisationKeyUpdatedIterator) Next() bool {
+	// If the iterator failed, stop iterating
+	if it.fail != nil {
+		return false
+	}
+	// If the iterator completed, deliver directly whatever's available
+	if it.done {
+		select {
+		case log := <-it.logs:
+			it.Event = new(AccountManagerAuthorisationKeyUpdated)
+			if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
+				it.fail = err
+				return false
+			}
+			it.Event.Raw = log
+			return true
+
+		default:
+			return false
+		}
+	}
+	// Iterator still in progress, wait for either a data or an error event
+	select {
+	case log := <-it.logs:
+		it.Event = new(AccountManagerAuthorisationKeyUpdated)
+		if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
+			it.fail = err
+			return false
+		}
+		it.Event.Raw = log
+		return true
+
+	case err := <-it.sub.Err():
+		it.done = true
+		it.fail = err
+		return it.Next()
+	}
+}
+
+// Error returns any retrieval or parsing error occurred during filtering.
+func (it *AccountManagerAuthorisationKeyUpdatedIterator) Error() error {
+	return it.fail
+}
+
+// Close terminates the iteration process, releasing any pending underlying
+// resources.
+func (it *AccountManagerAuthorisationKeyUpdatedIterator) Close() error {
+	it.sub.Unsubscribe()
+	return nil
+}
+
+// AccountManagerAuthorisationKeyUpdated represents a AuthorisationKeyUpdated event raised by the AccountManager contract.
+type AccountManagerAuthorisationKeyUpdated struct {
+	NewKeyAddress common.Address
+	Raw           types.Log // Blockchain specific contextual infos
+}
+
+// FilterAuthorisationKeyUpdated is a free log retrieval operation binding the contract event 0x397e9e5bff25b6d6a7ba18f106ec27385780db7fc612fc66924903e8ef2144f4.
+//
+// Solidity: event AuthorisationKeyUpdated(newKeyAddress address)
+func (_AccountManager *AccountManagerFilterer) FilterAuthorisationKeyUpdated(opts *bind.FilterOpts) (*AccountManagerAuthorisationKeyUpdatedIterator, error) {
+
+	logs, sub, err := _AccountManager.contract.FilterLogs(opts, "AuthorisationKeyUpdated")
+	if err != nil {
+		return nil, err
+	}
+	return &AccountManagerAuthorisationKeyUpdatedIterator{contract: _AccountManager.contract, event: "AuthorisationKeyUpdated", logs: logs, sub: sub}, nil
+}
+
+// WatchAuthorisationKeyUpdated is a free log subscription operation binding the contract event 0x397e9e5bff25b6d6a7ba18f106ec27385780db7fc612fc66924903e8ef2144f4.
+//
+// Solidity: event AuthorisationKeyUpdated(newKeyAddress address)
+func (_AccountManager *AccountManagerFilterer) WatchAuthorisationKeyUpdated(opts *bind.WatchOpts, sink chan<- *AccountManagerAuthorisationKeyUpdated) (event.Subscription, error) {
+
+	logs, sub, err := _AccountManager.contract.WatchLogs(opts, "AuthorisationKeyUpdated")
+	if err != nil {
+		return nil, err
+	}
+	return event.NewSubscription(func(quit <-chan struct{}) error {
+		defer sub.Unsubscribe()
+		for {
+			select {
+			case log := <-logs:
+				// New log arrived, parse the event and forward to the user
+				event := new(AccountManagerAuthorisationKeyUpdated)
+				if err := _AccountManager.contract.UnpackLog(event, "AuthorisationKeyUpdated", log); err != nil {
 					return err
 				}
 				event.Raw = log
