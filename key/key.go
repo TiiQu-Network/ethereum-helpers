@@ -8,7 +8,7 @@ import (
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/crypto"
 	"github.com/ethereum/go-ethereum/crypto/secp256k1"
-	"github.com/medicalchain/ethereum-client/handlers"
+	"github.com/Samyoul/go-handle"
 )
 
 type PrivateKey struct {
