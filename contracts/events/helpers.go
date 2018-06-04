@@ -10,6 +10,7 @@ import (
 	"github.com/ethereum/go-ethereum/core/types"
 	"github.com/ethereum/go-ethereum/ethclient"
 	"go.uber.org/zap"
+	"fmt"
 )
 
 // MustParseABI parses abi string
@@ -52,7 +53,8 @@ func WatchSubscription(logs <-chan types.Log, subscription ethereum.Subscription
 			logger.Error("Logs subscription error", zap.Error(err))
 			break
 		case l := <-logs:
-			logger.Info("new log", zap.String("log", l.String()))
+			logData := fmt.Sprintf(`log: %x %x %x %x %d %x %d`, l.Address, l.Topics, l.Data, l.TxHash, l.TxIndex, l.BlockHash, l.Index)
+			logger.Info("new log", zap.String("log", logData))
 		}
 	}
 }
